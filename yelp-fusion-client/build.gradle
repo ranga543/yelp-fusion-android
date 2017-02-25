@@ -1,0 +1,160 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    packagingOptions {
+        // com.fasterxml.jackson.core:jackson-databind includes duplicate licenses in it's own submodule dependencies.
+        // Build fails because of this even though the submodules are not wrapped into the output artifacts. We exclude
+        // the LICENSE files from the build so it doesn't fail the process.
+        exclude 'META-INF/LICENSE'
+    }
+}
+
+sourceSets {
+    integrationTest {
+        java {
+            java.srcDirs = [
+                    'src/main/java',
+                    'src/test/java'
+            ]
+            resources.srcDirs =  [
+                    'src/test/resources'
+            ]
+        }
+    }
+}
+
+configurations {
+    integrationTestCompile.extendsFrom testCompile
+    integrationTestRuntime.extendsFrom testRuntime
+}
+
+task integrationTest(type: Test) {
+    testClassesDir = sourceSets.integrationTest.output.classesDir
+    classpath = sourceSets.integrationTest.runtimeClasspath
+
+    // Set upToDateWhen to false so integration tests always run when the task is called.
+    outputs.upToDateWhen { false }
+}
+
+// Makes integration tests not run by default.
+check.dependsOn -= integrationTest
+
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:25.1.1'
+    compile 'com.fasterxml.jackson.core:jackson-core:2.8.7'
+    compile 'com.fasterxml.jackson.core:jackson-annotations:2.8.7'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.8.7'
+    compile 'com.squareup.okhttp3:okhttp:3.6.0'
+    compile 'com.squareup.retrofit2:converter-jackson:2.2.0'
+    compile 'com.squareup.retrofit2:retrofit:2.2.0'
+
+    testCompile 'junit:junit:4.12'
+    testCompile 'com.squareup.retrofit2:converter-jackson:2.2.0'
+    testCompile 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.8.7'
+
+}
+
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+task javadoc(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives javadocJar
+    archives sourcesJar
+}
+
+group = 'ranga.android'
+version = '0.1.1'
+
+install {
+    repositories.mavenInstaller {
+        pom.project {
+            name 'Yelp Fusion Client'
+            description 'A library for accessing Yelp fusion API'
+            url 'https://github.com/ranga543/yelp-fusion-android'
+            inceptionYear '2016'
+
+            packaging 'aar'
+            groupId 'ranga.android'
+            artifactId 'yelp-fusion-client'
+            version '0.1.1'
+
+            licenses {
+                license {
+                    name 'The MIT License (MIT)'
+                    url 'https://opensource.org/licenses/MIT'
+                }
+            }
+            scm {
+                connection 'https://github.com/ranga543/yelp-fusion-android.git'
+                url 'https://github.com/ranga543/yelp-fusion-android.git'
+
+            }
+            developers {
+                developer {
+                    id = 'ranga543'
+                    name 'Ranga'
+                }
+            }
+        }
+    }
+}
+
+Properties bintrayProperties = new Properties()
+bintrayProperties.load(project.rootProject.file('bintray.properties').newDataInputStream())
+
+bintray {
+    user = bintrayProperties.getProperty('user')
+    key = bintrayProperties.get('key')
+    configurations = ['archives']
+    pkg {
+        repo = 'android'
+        name = 'yelp-fusion-client'
+        userOrg = 'ranga'
+        licenses = ['MIT']
+        vcsUrl = 'https://github.com/ranga543/yelp-fusion-android.git'
+        publish = true
+        version {
+            name = '0.1.1'
+            desc = 'Yelp Fusion Client 0.1.1'
+            released = new Date()
+            vcsTag = 'v0.1.1'
+        }
+    }
+}
