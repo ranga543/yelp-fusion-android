@@ -10,9 +10,9 @@ This library inspired by [YelpAndroid](https://github.com/Yelp/yelp-android)
 
 ```xml
 <dependency>
-  <groupId>ranga.android</groupId>
+  <groupId>io.github.ranga543</groupId>
   <artifactId>yelp-fusion-client</artifactId>
-  <version>0.1.1</version>
+  <version>0.1.2</version>
   <type>pom</type>
 </dependency>
 ```
@@ -26,7 +26,7 @@ repositories {
 
 dependencies {
     ...
-    compile 'ranga.android:yelp-fusion-client:0.1.1'
+    compile 'io.github.ranga543:yelp-fusion-client:0.1.2'
     ...
 }
 ```
