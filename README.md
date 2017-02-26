@@ -21,7 +21,7 @@ or [Gradle](http://gradle.org/):
 
 ```groovy
 repositories {
-    maven { url 'https://dl.bintray.com/ranga543/android' }
+    jcenter()
 }
 
 dependencies {
