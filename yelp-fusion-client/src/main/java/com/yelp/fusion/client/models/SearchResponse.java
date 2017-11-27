@@ -2,9 +2,10 @@ package com.yelp.fusion.client.models;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class SearchResponse
+public class SearchResponse implements Serializable
 {
     @JsonGetter("region")
     public Region getRegion() {

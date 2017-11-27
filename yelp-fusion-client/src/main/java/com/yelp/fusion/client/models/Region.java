@@ -2,7 +2,9 @@ package com.yelp.fusion.client.models;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
 
-public class Region
+import java.io.Serializable;
+
+public class Region implements Serializable
 {
     @JsonGetter("center")
     public Center getCenter() {
