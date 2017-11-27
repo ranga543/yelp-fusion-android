@@ -2,7 +2,9 @@ package com.yelp.fusion.client.models;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
 
-public class Category
+import java.io.Serializable;
+
+public class Category implements Serializable
 {
     @JsonGetter("title")
     public String getTitle() {

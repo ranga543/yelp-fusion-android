@@ -2,7 +2,9 @@ package com.yelp.fusion.client.models;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
 
-public class Coordinates
+import java.io.Serializable;
+
+public class Coordinates implements Serializable
 {
     @JsonGetter("latitude")
     public double getLatitude() {
