@@ -1,6 +1,6 @@
 package com.yelp.fusion.client.connection.interceptors;
 
-import com.yelp.fusion.client.models.AccessToken;
+import com.yelp.fusion.client.models.ApiKey;
 
 import java.io.IOException;
 
@@ -8,15 +8,15 @@ import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class AccessTokenInterceptor implements Interceptor {
+public class ApiKeyInterceptor implements Interceptor {
 
-    private AccessToken accessToken;
+    private ApiKey apiKey;
 
-    public AccessTokenInterceptor(AccessToken accessToken){
-        if(accessToken == null) {
-            throw new IllegalArgumentException("accessToken");
+    public ApiKeyInterceptor(ApiKey apiKey){
+        if(apiKey == null) {
+            throw new IllegalArgumentException("apiKey");
         }
-        this.accessToken = accessToken;
+        this.apiKey = apiKey;
     }
 
     @Override
@@ -24,7 +24,7 @@ public class AccessTokenInterceptor implements Interceptor {
         Request originalRequest = chain.request();
         originalRequest = originalRequest.newBuilder()
                 .header("Accept", "application/json")
-                .header("Authorization", accessToken.getTokenType() + " " + accessToken.getAccessToken())
+                .header("Authorization", apiKey.getTokenType() + " " + apiKey.getApiKey())
         .build();
         return chain.proceed(originalRequest);
     }
