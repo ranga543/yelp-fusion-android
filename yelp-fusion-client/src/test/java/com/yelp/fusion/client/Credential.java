@@ -26,20 +26,14 @@ public class Credential {
 
     private static Credential instance;
 
-    private String appId;
-    private String appSecret;
+    private String apiKey;
 
     private Credential(Builder builder) {
-        appId = builder.appId;
-        appSecret = builder.appSecret;
+        apiKey = builder.apiKey;
     }
 
-    public static String appId() {
-        return getCredential().appId;
-    }
-
-    public static String appSecret() {
-        return getCredential().appSecret;
+    public static String apiKey() {
+        return getCredential().apiKey;
     }
 
     private static Credential getCredential() {
@@ -59,21 +53,14 @@ public class Credential {
     @JsonPOJOBuilder(withPrefix = "")
     @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
     public static final class Builder {
-        private String appId;
-        private String appSecret;
+        private String apiKey;
 
         public Builder() {
         }
 
-        @JsonProperty("app_id")
-        public Builder appId(String val) {
-            appId = val;
-            return this;
-        }
-
-        @JsonProperty("app_secret")
-        public Builder appSecret(String val) {
-            appSecret = val;
+        @JsonProperty("api_key")
+        public Builder apiKey(String val) {
+            apiKey = val;
             return this;
         }
 

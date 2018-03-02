@@ -26,7 +26,7 @@ public class YelpFusionApiUnitTest {
     YelpFusionApi yelpFusionApi;
     public YelpFusionApiUnitTest() throws IOException {
         yelpFusionApiFactory = new YelpFusionApiFactory();
-        yelpFusionApi = yelpFusionApiFactory.createAPI(Credential.appId(), Credential.appSecret());
+        yelpFusionApi = yelpFusionApiFactory.createAPI(Credential.apiKey());
     }
 
     @Test
