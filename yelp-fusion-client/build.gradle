@@ -97,7 +97,7 @@ artifacts {
 }
 
 group = 'io.github.ranga543'
-version = '0.1.3'
+version = '0.1.4'
 
 install {
     repositories.mavenInstaller {
@@ -110,7 +110,7 @@ install {
             packaging 'aar'
             groupId 'io.github.ranga543'
             artifactId 'yelp-fusion-client'
-            version '0.1.3'
+            version '0.1.4'
 
             licenses {
                 license {
@@ -150,10 +150,10 @@ bintray {
         githubRepo = 'ranga543/yelp-fusion-android'
         githubReleaseNotesFile = 'README.md'
         version {
-            name = '0.1.3'
-            desc = 'Yelp Fusion Client 0.1.3'
+            name = '0.1.4'
+            desc = 'Yelp Fusion Client 0.1.4'
             released = new Date()
-            vcsTag = 'v0.1.3'
+            vcsTag = 'v0.1.4'
             gpg {
                 sign = true
                 passphrase = bintrayProperties.getProperty('gpg.password')
