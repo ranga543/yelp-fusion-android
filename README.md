@@ -12,7 +12,7 @@ This library inspired by [YelpAndroid](https://github.com/Yelp/yelp-android)
 <dependency>
   <groupId>io.github.ranga543</groupId>
   <artifactId>yelp-fusion-client</artifactId>
-  <version>0.1.2</version>
+  <version>0.1.4</version>
   <type>pom</type>
 </dependency>
 ```
@@ -26,7 +26,7 @@ repositories {
 
 dependencies {
     ...
-    compile 'io.github.ranga543:yelp-fusion-client:0.1.2'
+    compile 'io.github.ranga543:yelp-fusion-client:0.1.4'
     ...
 }
 ```
@@ -36,10 +36,10 @@ Proguard rules for the library can be found [here](https://github.com/ranga543/y
 
 ### Basic usage
 This library uses a `YelpFusionApi` object to query against the API. Instantiate a `YelpFusionApi` object by using 
-`YelpFusionApiFactory` with your API keys.
+`YelpFusionApiFactory` with your API key.
 ```java
 YelpFusionApiFactory apiFactory = new YelpFusionApiFactory();
-YelpFusionApi yelpFusionApi = apiFactory.createAPI(appId, appSecret);
+YelpFusionApi yelpFusionApi = apiFactory.createAPI(apiKey);
 ```
 
 ### [Search API](https://www.yelp.com/developers/documentation/v3/business_search)
@@ -174,8 +174,7 @@ To know more about running JUnit tests in Gradle, see [Gradle: The Java Plugin -
 If you are adding a new integration test, you will need to connect to the Yelp Fusion API. You can set this up by putting 
 your API keys into `src/test/resources/credentials.yaml` in the following format:
 ```
-app_id: YOUR_APP_ID
-app_secret: YOUR_APP_SECRET
+api_key: YOUR_API_KEY
 ```
 
 To run the integration tests, execute `./gradlew integrationTest`. Integration tests will not be ran in the build
