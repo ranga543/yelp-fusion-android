@@ -56,7 +56,7 @@ params.put("term", "indian food");
 params.put("latitude", "40.581140");
 params.put("longitude", "-111.914184");
 
-Call<SearchResponse> call = yelpFusionApi.getBusinessSearch("San Francisco", params);
+Call<SearchResponse> call = yelpFusionApi.getBusinessSearch(params);
 ```
 
 Now you can execute the `Call` object to send the request.
