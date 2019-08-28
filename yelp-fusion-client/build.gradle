@@ -72,7 +72,7 @@ dependencies {
 
     testCompile 'junit:junit:4.12'
     testCompile 'com.squareup.retrofit2:converter-jackson:2.2.0'
-    testCompile 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.8.7'
+    testCompile 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.9.9.3'
 
 }
 
