@@ -12,7 +12,7 @@ This library inspired by [YelpAndroid](https://github.com/Yelp/yelp-android)
 <dependency>
   <groupId>io.github.ranga543</groupId>
   <artifactId>yelp-fusion-client</artifactId>
-  <version>0.1.4</version>
+  <version>0.1.5</version>
   <type>pom</type>
 </dependency>
 ```
@@ -26,7 +26,7 @@ repositories {
 
 dependencies {
     ...
-    compile 'io.github.ranga543:yelp-fusion-client:0.1.4'
+    compile 'io.github.ranga543:yelp-fusion-client:0.1.5'
     ...
 }
 ```

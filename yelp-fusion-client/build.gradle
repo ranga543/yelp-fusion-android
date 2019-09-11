@@ -3,12 +3,12 @@ apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    compileSdkVersion 26
+    buildToolsVersion "26.0.2"
 
     defaultConfig {
         minSdkVersion 15
-        targetSdkVersion 25
+        targetSdkVersion 26
         versionCode 1
         versionName "1.0"
 
@@ -61,18 +61,18 @@ check.dependsOn -= integrationTest
 
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.1.1'
-    compile 'com.squareup.okhttp3:okhttp:3.6.0'
-    compile 'com.squareup.retrofit2:converter-jackson:2.2.0'
-    compile 'com.squareup.retrofit2:retrofit:2.2.0'
+    implementation 'com.android.support:appcompat-v7:26.0.0'
+    implementation 'com.squareup.okhttp3:okhttp:3.6.0'
+    implementation 'com.squareup.retrofit2:converter-jackson:2.2.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.2.0'
 
-    testCompile 'junit:junit:4.12'
-    testCompile 'com.squareup.retrofit2:converter-jackson:2.2.0'
-    testCompile 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.9.9.3'
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'com.squareup.retrofit2:converter-jackson:2.2.0'
+    testImplementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.9.3'
 
 }
 
@@ -97,7 +97,7 @@ artifacts {
 }
 
 group = 'io.github.ranga543'
-version = '0.1.4'
+version = '0.1.5'
 
 install {
     repositories.mavenInstaller {
@@ -110,7 +110,7 @@ install {
             packaging 'aar'
             groupId 'io.github.ranga543'
             artifactId 'yelp-fusion-client'
-            version '0.1.4'
+            version '0.1.5'
 
             licenses {
                 license {
@@ -150,10 +150,10 @@ bintray {
         githubRepo = 'ranga543/yelp-fusion-android'
         githubReleaseNotesFile = 'README.md'
         version {
-            name = '0.1.4'
-            desc = 'Yelp Fusion Client 0.1.4'
+            name = '0.1.5'
+            desc = 'Yelp Fusion Client 0.1.5'
             released = new Date()
-            vcsTag = 'v0.1.4'
+            vcsTag = 'v0.1.5'
             gpg {
                 sign = true
                 passphrase = bintrayProperties.getProperty('gpg.password')
